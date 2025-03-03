@@ -1,0 +1,88 @@
+\documentclass{article}
+
+% For positioning figures (eg. images) with [H]
+\usepackage{float}
+
+% Used for \SI and SI units
+\usepackage{siunitx}
+
+% Fancy tables innit
+% https://tablesgenerator.com/latex_tables
+\usepackage{booktabs}
+
+% For \abs
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+
+% Swap the definition of \abs* so that it resizes the size of the
+% brackets, and the starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\makeatother
+
+% For including graphs via \includegraphics
+\usepackage{graphicx}
+\graphicspath{{assets}}
+
+% Graph shortcuts
+\newcommand{\graph}[2]{
+  \begin{figure}[H]
+    \medskip
+    \centering
+    \includegraphics[width=1\linewidth]{#1}
+    \caption{#2}
+    \medskip\label{fig:#1}
+  \end{figure}
+}
+
+% Links
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan, citecolor=blue}
+\urlstyle{same}
+
+\author{Luis F.}
+\title{Wire Resistance Lab}
+
+\begin{document}
+
+\maketitle
+
+\section{Lab Design}
+\subsection{Research Question}
+
+\begin{itemize}
+  \item Research question: How is the resistance of a wire dependent
+    on its cross-sectional area?
+  \item Independent variable: Cross-sectional area of the wire
+  \item Dependent variable: Resistance of the wire
+\end{itemize}
+
+The hypothesis is that the resistance of a wire is inversely
+proportional to its cross-sectional area. This can be seen in
+equation~\ref{eq:resistance}, the equation for resistance. As the
+cross-sectional area, \(A\), increases, the resistance, \(R\), decreases.
+
+\begin{equation} \label{eq:resistance}
+  R = \frac{\rho L}{A}
+\end{equation}
+
+\subsection{Controlled Variables}
+
+The dependent variable, resistance, will be measured using a multimeter. The two probes
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}ccc@{}}
+    \toprule
+    Wire Diameter (mm) & Wire Cross-Sectional Area (mm) & Wire Resistivity \\ \midrule
+    1.00               & 0.79                           & \num{1.08e-6}    \\
+    0.80               & 0.50                           & \num{1.08e-6}    \\
+    0.63               & 0.31                           & \num{1.08e-6}    \\
+    0.49               & 0.19                           & \num{1.08e-6}    \\ \bottomrule
+  \end{tabular}
+  \caption{My table}
+  \label{tab:my-table}
+\end{table}
+
+\end{document}
