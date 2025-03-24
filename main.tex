@@ -37,7 +37,6 @@
     \centering
     \includegraphics[width=1\linewidth]{#1}
     \caption{#2}\label{fig:#1}
-    \medskip
   \end{figure}
 }
 
@@ -69,7 +68,7 @@
 
 The hypothesis is that the resistance of a wire is inversely proportional to its cross-sectional area. This can be seen in equation~\ref{eq:resistance}, the equation for resistance. As the cross-sectional area \(A\) increases, the resistance \(R\) decreases.
 
-\begin{equation} \label{eq:resistance}
+\begin{equation}\label{eq:resistance}
   R = \frac{\rho L}{A}
 \end{equation}
 
@@ -87,7 +86,6 @@ The temperature of the wire will be kept constant by taking the measurements in 
   % \includegraphics[width=1\linewidth]{lab-setup}
   \todo{Insert image of lab setup}
   \caption{Lab setup, where constant variables can be observed}\label{fig:lab-setup}
-  \medskip
 \end{figure}
 
 \subsection{Independent Variable}
@@ -132,7 +130,7 @@ For this experiment, five trials were performed for each wire diameter, measurin
     % https://tex.stackexchange.com/a/482550
     & & \multicolumn{6}{@{}c@{}}{Resistance \unc{0.1}{\ohm}} \\
     \cmidrule(l){3-8}
-    Length \punc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & T1 & T2 & T3 & T4 & T5 & Average \\ \midrule
+    Length \unc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & T1 & T2 & T3 & T4 & T5 & Average \\ \midrule
     \num{40.0} & \num{0.79} & \num{1.2} & \num{1.0} & \num{1.2} & \num{1.6} & \num{1.0} & \num{1.20}        \\
     \num{40.0} & \num{0.50} & \num{1.9} & \num{1.7} & \num{1.6} & \num{1.5} & \num{1.6} & \num{1.66}        \\
     \num{40.0} & \num{0.31} & \num{1.8} & \num{2.9} & \num{1.8} & \num{1.7} & \num{1.7} & \num{1.98}        \\
@@ -158,7 +156,7 @@ To calculate the uncertainty for the average resistance, we can calculate the di
     % https://tex.stackexchange.com/a/482550
     & & \multicolumn{6}{@{}c@{}}{Difference from mean resistance (\si{\ohm})} \\
     \cmidrule(l){3-8}
-    Length \punc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & T1 & T2 & T3 & T4 & T5 & Average \\ \midrule
+    Length \unc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & T1 & T2 & T3 & T4 & T5 & Average \\ \midrule
     \num{40.0} & \num{0.79} & \num{0.0} & \num{0.2} & \num{0.0} & \num{0.4} & \num{0.2} & \num{0.2}         \\
     \num{40.0} & \num{0.50} & \num{0.2} & \num{0.0} & \num{0.1} & \num{0.2} & \num{0.0} & \num{0.1}         \\
     \num{40.0} & \num{0.31} & \num{0.2} & \num{0.9} & \num{0.2} & \num{0.3} & \num{0.3} & \num{0.4}         \\
@@ -175,13 +173,64 @@ Putting this together, we get table~\ref{tab:processed-data}, which shows the pr
   \centering
   \begin{tabular}{@{}cccl@{}}
     \toprule
-    Length \punc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & Average resistance & Uncertainty     \\ \midrule
-    \num{40.0}                      & \num{0.79}                         & \num{1.20}         & \unc{0.2}{\ohm} \\
-    \num{40.0}                      & \num{0.50}                         & \num{1.66}         & \unc{0.1}{\ohm} \\
-    \num{40.0}                      & \num{0.31}                         & \num{1.98}         & \unc{0.4}{\ohm} \\
-    \num{40.0}                      & \num{0.19}                         & \num{3.94}         & \unc{0.2}{\ohm} \\ \bottomrule
+    Length \unc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & Average resistance & Uncertainty     \\ \midrule
+    \num{40.0}                     & \num{0.79}                         & \num{1.20}         & \unc{0.2}{\ohm} \\
+    \num{40.0}                     & \num{0.50}                         & \num{1.66}         & \unc{0.1}{\ohm} \\
+    \num{40.0}                     & \num{0.31}                         & \num{1.98}         & \unc{0.4}{\ohm} \\
+    \num{40.0}                     & \num{0.19}                         & \num{3.94}         & \unc{0.2}{\ohm} \\ \bottomrule
   \end{tabular}
   \caption{Processed wire trials}\label{tab:processed-data}
+\end{table}
+
+% Normalising the units of length into metres and CSA into metres squared gives us table~\ref{tab:processed-data-normalised}.
+
+% \begin{table}[H]
+%   \centering
+%   \begin{tabular}{@{}cccl@{}}
+%     \toprule
+%     Length \unc{0.005}{\centi\metre} & CSA \punc{2}{\metre\squared} & Average resistance & Uncertainty     \\ \midrule
+%     \num{0.400}                      & \num{7.9e-7}                 & \num{1.20}         & \unc{0.2}{\ohm} \\
+%     \num{0.400}                      & \num{5.0e-7}                 & \num{1.66}         & \unc{0.1}{\ohm} \\
+%     \num{0.400}                      & \num{3.1e-7}                 & \num{1.98}         & \unc{0.4}{\ohm} \\
+%     \num{0.400}                      & \num{1.9e-7}                 & \num{3.94}         & \unc{0.2}{\ohm} \\ \bottomrule
+%   \end{tabular}
+%   \caption{Processed and normalised wire trials}\label{tab:processed-data-normalised}
+% \end{table}
+
+Having this, we can construct figure~\ref{fig:resistance-vs-csa}, a graph of our independent variable, cross-sectional area, against our dependent variable, resistance.
+
+\graph{resistance-vs-csa}{Resistance vs cross-sectional area}
+
+The relationship between CSA and resistance appears to be approximately inversely proportional, as seen in the line of best fit shown in equation~\ref{eq:best-fit} and the approximate relationship in equation~\ref{eq:approximate-fit}.
+
+\begin{equation}\label{eq:best-fit}
+  R = 0.9438 \times A^{-0.79}
+\end{equation}
+
+\begin{equation}\label{eq:approximate-fit}
+  R \propto A^{-0.79} \approx R \propto A^{-1} \implies R \propto \frac{1}{A}
+\end{equation}
+
+We know that resistance is inversely proportional to CSA by rearranging equation~\ref{eq:resistance} as seen in equation~\ref{eq:resistance-inverse}.
+
+\begin{equation}\label{eq:resistance-inverse}
+  R = \frac{\rho L}{A} \implies R \propto \frac{1}{A}
+\end{equation}
+
+To linearise the graph, we can take the reciprocal of the CSA, as seen in figure~\ref{fig:resistance-vs-reciprocal-csa}. Linearising the graph allows us to obtain best-fit slopes for the best, minimum and maximum lines of best fit, as seen in table~\ref{tab:best-fit-slopes}.
+
+\graph{resistance-vs-reciprocal-csa}{Resistance vs reciprocal cross-sectional area}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}ccc@{}}
+    \toprule
+    Line of best fit & Equation                 & Slope (\si{\ohm\centi\metre\squared})  \\ \midrule
+    Best             & \(y = 0.6675x + 0.2302\) & 0.6675                                 \\
+    Minimum          & \(y = 0.3722x + 1.0261\) & 0.3722                                 \\
+    Maximum          & \(y = 0.9554x - 0.9165\) & 0.9554                                 \\ \bottomrule
+  \end{tabular}
+  \caption{Best-fit slopes for reciprocal CSA}\label{tab:best-fit-slopes}
 \end{table}
 
 \end{document}
