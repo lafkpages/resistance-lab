@@ -1,14 +1,19 @@
 \documentclass{article}
 
+\usepackage[a4paper, margin=1in]{geometry}
+
 % For positioning figures (eg. images) with [H]
 \usepackage{float}
 
 % Used for \SI and SI units
-\usepackage{siunitx}
+\usepackage[separate-uncertainty=true,multi-part-units=single]{siunitx}
+\newcommand{\unc}[2]{\(\pm\SI{#1}{#2}\)}
+\newcommand{\punc}[2]{\(\pm\SI{#1}{\percent}\) \si{#2}}
 
 % Fancy tables innit
 % https://tablesgenerator.com/latex_tables
 \usepackage{booktabs}
+\usepackage{tabularx}
 
 % For \abs
 \usepackage{mathtools}
@@ -31,8 +36,8 @@
     \medskip
     \centering
     \includegraphics[width=1\linewidth]{#1}
-    \caption{#2}
-    \medskip\label{fig:#1}
+    \caption{#2}\label{fig:#1}
+    \medskip
   \end{figure}
 }
 
@@ -40,6 +45,11 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan, citecolor=blue}
 \urlstyle{same}
+
+% show TODO's in red
+\newcommand{\todo}[1]{{\color{red}{\footnotesize[TODO:\@ #1]}}}
+% to remove all todo's
+%\newcommand\todo[1]{}
 
 \author{Luis F.}
 \title{Wire Resistance Lab}
@@ -52,16 +62,12 @@
 \subsection{Research Question}
 
 \begin{itemize}
-  \item Research question: How is the resistance of a wire dependent
-    on its cross-sectional area?
+  \item Research question: How is the resistance of a wire dependent on its cross-sectional area?
   \item Independent variable: Cross-sectional area of the wire
   \item Dependent variable: Resistance of the wire
 \end{itemize}
 
-The hypothesis is that the resistance of a wire is inversely
-proportional to its cross-sectional area. This can be seen in
-equation~\ref{eq:resistance}, the equation for resistance. As the
-cross-sectional area, \(A\), increases, the resistance, \(R\), decreases.
+The hypothesis is that the resistance of a wire is inversely proportional to its cross-sectional area. This can be seen in equation~\ref{eq:resistance}, the equation for resistance. As the cross-sectional area \(A\) increases, the resistance \(R\) decreases.
 
 \begin{equation} \label{eq:resistance}
   R = \frac{\rho L}{A}
@@ -69,20 +75,113 @@ cross-sectional area, \(A\), increases, the resistance, \(R\), decreases.
 
 \subsection{Controlled Variables}
 
-The dependent variable, resistance, will be measured using a multimeter. The two probes
+The dependent variable, resistance, will be measured using a multimeter. The probes used to measure the resistance and their position on the wire will be kept constant.
+
+The length of the wire between the probes will also be kept constant, at \SI{40\pm0.5}{\centi\metre}, as can be seen in figure~\ref{fig:lab-setup}. This uncertainty was chosen as the wire was measured using the ruler on the wire board, and while the smallest division was \SI{1}{\milli\metre}, the wire was slightly elevated above the ruler, making it difficult to measure accurately due to parallax errors. Therefore we decided that \unc{0.5}{\centi\metre} was a reasonable uncertainty.
+
+The temperature of the wire will be kept constant by taking the measurements in a room with a constant temperature, controlled by thermostat, and performing the resistance readings quickly to avoid any significant temperature changes.
+
+\begin{figure}[H]
+  \medskip
+  \centering
+  % \includegraphics[width=1\linewidth]{lab-setup}
+  \todo{Insert image of lab setup}
+  \caption{Lab setup, where constant variables can be observed}\label{fig:lab-setup}
+  \medskip
+\end{figure}
+
+\subsection{Independent Variable}
+
+The independent variable is the cross-sectional area of the wire. The cross-sectional area will be varied by using wires of different diameters. The diameters of the wires used can be seen in table~\ref{tab:given-data}. The cross-sectional area (CSA) of the wire can be calculated using equation~\ref{eq:csa}, the formula for the area of a circle, where \(r\) is the radius of the wire. The radius of the wire is half of the diameter, so the formula can be rewritten in terms of the diameter \(d\).
+
+\begin{equation}\label{eq:csa}
+  A = \pi r^2 = \frac{\pi d^2}{4}
+\end{equation}
+
+An uncertainty of \punc{1}{\milli\metre} will be used for wire diameter, and \punc{1}{\ohm\metre} for resistivity, as they were given values with no stated uncertainty, and 1\% is the standard default uncertainty we were instructed to use by our teacher. The uncertainty for CSA can be derived using the formula for propagating powers in uncertainties, which results in an uncertainty of \punc{2}{\milli\metre\squared}.
+
+\todo{Explain how the uncertainty for CSA was calculated}
 
 \begin{table}[H]
   \centering
   \begin{tabular}{@{}ccc@{}}
     \toprule
-    Wire Diameter (mm) & Wire Cross-Sectional Area (mm) & Wire Resistivity \\ \midrule
-    1.00               & 0.79                           & \num{1.08e-6}    \\
-    0.80               & 0.50                           & \num{1.08e-6}    \\
-    0.63               & 0.31                           & \num{1.08e-6}    \\
-    0.49               & 0.19                           & \num{1.08e-6}    \\ \bottomrule
+    Diameter \punc{1}{\milli\metre} & CSA \punc{2}{\milli\metre\squared} & Resistivity \punc{1}{\ohm\metre} \\ \midrule
+    \num{1.00}                      & \num{0.79}                         & \num{1.08e-6}                    \\
+    \num{0.80}                      & \num{0.50}                         & \num{1.08e-6}                    \\
+    \num{0.63}                      & \num{0.31}                         & \num{1.08e-6}                    \\
+    \num{0.49}                      & \num{0.19}                         & \num{1.08e-6}                    \\ \bottomrule
   \end{tabular}
-  \caption{My table}
-  \label{tab:my-table}
+  \caption{Pre-experiment given wire data}\label{tab:given-data}
+\end{table}
+
+For example, using equation~\ref{eq:csa}, the cross-sectional area of the wire with a diameter of \SI{1.00}{\milli\metre} can be calculated as follows:
+
+\begin{equation*}
+  A = \frac{\pi \times \SI{1.00}{\milli\metre}^2}{4} = \frac{\pi}{4} \approx \SI{0.79}{\milli\metre\squared}
+\end{equation*}
+
+For this experiment, five trials were performed for each wire diameter, measuring the resistance of the wire for each trial. This will result in a total of 20 trials. 25 trials would have been preferred, however our wire board only had four different wires available.
+
+\section{Data Collection and Processing}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}cccccccc@{}}
+    \toprule
+    % https://tex.stackexchange.com/a/482550
+    & & \multicolumn{6}{@{}c@{}}{Resistance \unc{0.1}{\ohm}} \\
+    \cmidrule(l){3-8}
+    Length \punc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & T1 & T2 & T3 & T4 & T5 & Average \\ \midrule
+    \num{40.0} & \num{0.79} & \num{1.2} & \num{1.0} & \num{1.2} & \num{1.6} & \num{1.0} & \num{1.20}        \\
+    \num{40.0} & \num{0.50} & \num{1.9} & \num{1.7} & \num{1.6} & \num{1.5} & \num{1.6} & \num{1.66}        \\
+    \num{40.0} & \num{0.31} & \num{1.8} & \num{2.9} & \num{1.8} & \num{1.7} & \num{1.7} & \num{1.98}        \\
+    \num{40.0} & \num{0.19} & \num{3.9} & \num{4.5} & \num{3.9} & \num{3.8} & \num{3.6} & \num{3.94}        \\ \bottomrule
+  \end{tabular}
+  \caption{Raw wire data collected}\label{tab:raw-data}
+\end{table}
+
+The average resistance for each wire diameter was calculated by taking the arithmetic mean of the five trials. An example of this calculation can be seen in equation~\ref{eq:average-resistance}.
+
+The uncertainty for the resistance was chosen to be \unc{0.1}{\ohm}, as the multimeter used went up by increments of \SI{0.1}{\ohm}, and this is the convention for digital readings.
+
+\begin{equation}\label{eq:average-resistance}
+  R_\mathrm{avg} = \frac{1.2 + 1.0 + 1.2 + 1.6 + 1.0}{5} = \SI{1.20}{\ohm}
+\end{equation}
+
+To calculate the uncertainty for the average resistance, we can calculate the difference from the mean for each trial, and then take the average of these differences. This is done in table~\ref{tab:diff-from-mean}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}cccccccc@{}}
+    \toprule
+    % https://tex.stackexchange.com/a/482550
+    & & \multicolumn{6}{@{}c@{}}{Difference from mean resistance (\si{\ohm})} \\
+    \cmidrule(l){3-8}
+    Length \punc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & T1 & T2 & T3 & T4 & T5 & Average \\ \midrule
+    \num{40.0} & \num{0.79} & \num{0.0} & \num{0.2} & \num{0.0} & \num{0.4} & \num{0.2} & \num{0.2}         \\
+    \num{40.0} & \num{0.50} & \num{0.2} & \num{0.0} & \num{0.1} & \num{0.2} & \num{0.0} & \num{0.1}         \\
+    \num{40.0} & \num{0.31} & \num{0.2} & \num{0.9} & \num{0.2} & \num{0.3} & \num{0.3} & \num{0.4}         \\
+    \num{40.0} & \num{0.19} & \num{0.0} & \num{0.6} & \num{0.0} & \num{0.1} & \num{0.3} & \num{0.2}         \\ \bottomrule
+  \end{tabular}
+  \caption{Differences from mean resistance for each wire}\label{tab:diff-from-mean}
+\end{table}
+
+\todo{Show example calcs}
+
+Putting this together, we get table~\ref{tab:processed-data}, which shows the processed data for each trial, including the average resistance and the uncertainty for the average resistance.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}cccl@{}}
+    \toprule
+    Length \punc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & Average resistance & Uncertainty     \\ \midrule
+    \num{40.0}                      & \num{0.79}                         & \num{1.20}         & \unc{0.2}{\ohm} \\
+    \num{40.0}                      & \num{0.50}                         & \num{1.66}         & \unc{0.1}{\ohm} \\
+    \num{40.0}                      & \num{0.31}                         & \num{1.98}         & \unc{0.4}{\ohm} \\
+    \num{40.0}                      & \num{0.19}                         & \num{3.94}         & \unc{0.2}{\ohm} \\ \bottomrule
+  \end{tabular}
+  \caption{Processed wire trials}\label{tab:processed-data}
 \end{table}
 
 \end{document}
