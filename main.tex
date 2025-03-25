@@ -6,7 +6,10 @@
 \usepackage{float}
 
 % Used for \SI and SI units
-\usepackage[separate-uncertainty=true,multi-part-units=single]{siunitx}
+\usepackage[
+  separate-uncertainty=true,
+  multi-part-units=single
+]{siunitx}
 \newcommand{\unc}[2]{\(\pm\SI{#1}{#2}\)}
 \newcommand{\punc}[2]{\(\pm\SI{#1}{\percent}\) \si{#2}}
 
@@ -83,8 +86,7 @@ The temperature of the wire will be kept constant by taking the measurements in 
 \begin{figure}[H]
   \medskip
   \centering
-  % \includegraphics[width=1\linewidth]{lab-setup}
-  \todo{Insert image of lab setup}
+  \includegraphics[width=1\linewidth]{lab-setup}
   \caption{Lab setup, where constant variables can be observed}\label{fig:lab-setup}
 \end{figure}
 
@@ -223,14 +225,70 @@ To linearise the graph, we can take the reciprocal of the CSA, as seen in figure
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{@{}ccc@{}}
+  \begin{tabular}{@{}cccc@{}}
     \toprule
-    Line of best fit & Equation                 & Slope (\si{\ohm\centi\metre\squared})  \\ \midrule
-    Best             & \(y = 0.6675x + 0.2302\) & 0.6675                                 \\
-    Minimum          & \(y = 0.3722x + 1.0261\) & 0.3722                                 \\
-    Maximum          & \(y = 0.9554x - 0.9165\) & 0.9554                                 \\ \bottomrule
+    Line of best fit & Equation                 & Slope (\si{\ohm\centi\metre\squared}) & Slope (\si{\ohm\metre\squared}) \\ \midrule
+    Best             & \(y = 0.6675x + 0.2302\) & \num{0.6675}                          & \num{6.675e-5}                 \\
+    Minimum          & \(y = 0.3722x + 1.0261\) & \num{0.3722}                          & \num{3.722e-5}                 \\
+    Maximum          & \(y = 0.9554x - 0.9165\) & \num{0.9554}                          & \num{9.554e-5}                 \\ \bottomrule
   \end{tabular}
   \caption{Best-fit slopes for reciprocal CSA}\label{tab:best-fit-slopes}
 \end{table}
+
+We can see that the slopes in these lines of best fit represent \(\rho L\), as seen by rearranging equation~\ref{eq:resistance-inverse} in equation~\ref{eq:resistance-inverse-slope}.
+
+\begin{equation}\label{eq:resistance-inverse-slope}
+  R = \rho L \times \frac{1}{A} \implies m = \rho L
+\end{equation}
+
+Therefore we can rearrange to solve for \(\rho\) in equation~\ref{eq:resistivity}.
+
+\begin{equation}\label{eq:resistivity}
+  \rho = \frac{m}{L}
+\end{equation}
+
+Using this, we can calculate the resistivity of the wire for each line of best fit, as seen in table~\ref{tab:resistivity}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}cccc@{}}
+    \toprule
+    Line of best fit & Slope (\si{\ohm\metre\squared}) & Resistivity   \\ \midrule
+    Best             & \num{6.675e-5}                  & \num{1.67e-4} \\
+    Minimum          & \num{3.722e-5}                  & \num{9.31e-5} \\
+    Maximum          & \num{9.554e-5}                  & \num{2.39e-4} \\ \bottomrule
+  \end{tabular}
+  \caption{Resistivity calculations}\label{tab:resistivity}
+\end{table}
+
+An example calculation for the resistivity of the wire for the best line of best fit can be seen in equation~\ref{eq:resistivity-calculation}.
+
+\begin{equation}\label{eq:resistivity-calculation}
+  \rho = \frac{\SI{0.6675e-4}{\ohm\metre\squared}}{\SI{0.400}{\metre}} = \SI{1.67e-4}{\ohm\metre}
+\end{equation}
+
+To calculate the uncertainty for the resistivity, we can then use the maximum and minimum resistivity values to calculate the range of resistivity values, as seen in equation~\ref{eq:resistivity-range}.
+
+\begin{equation}\label{eq:resistivity-range}
+  \Delta\rho = \frac{\rho_{\max} - \rho_{\min}}{2} = \frac{\SI{2.39e-4}{\ohm\metre} - \SI{9.31e-5}{\ohm\metre}}{2} = \SI{3.60e-5}{\ohm\metre}
+\end{equation}
+
+However, uncertainties must be rounded to one significant figure, so the uncertainty becomes \unc{4e-5}{\ohm\metre}. The final resistivity value must also be rounded accordingly. The final resistivity value for the wire can therefore be seen in equation~\ref{eq:final-resistivity}.
+
+\begin{equation}\label{eq:final-resistivity}
+  \rho = \num{17(4)e-5}\si{\ohm\metre}
+\end{equation}
+
+Calculating percent error for the resistivity of the wire can be done using equation~\ref{eq:percent-error}.
+
+\begin{equation}\label{eq:percent-error}
+  {\displaystyle{\mathcal{E}}} = \frac{\abs{\rho_{\text{actual}} - \rho_{\text{measured}}}}{\rho_{\text{actual}}} \times 100
+\end{equation}
+
+The actual resistivity of the wire was given as \SI{1.08e-6}{\ohm\metre} as seen in table~\ref{tab:given-data}, so the percent error can be calculated as seen in equation~\ref{eq:percent-error-calculation}.
+
+\begin{equation}\label{eq:percent-error-calculation}
+  {\displaystyle{\mathcal{E}}} = \frac{\abs{\num{1.08e-6} - \num{17e-5}}}{\num{1.08e-6}} \times 100 = \SI{15337}{\percent}
+\end{equation}
 
 \end{document}
