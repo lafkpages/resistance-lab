@@ -198,25 +198,25 @@ Putting this together, we get table~\ref{tab:processed-data}, which shows the pr
 
 % Feedback: Why is the unc for .31 so much bigger?
 
-% Feedback: You should have your L and A in m and meters squared.
-% - (this is commented out below)
+% Feedback: You should have your L and A in m and metres squared.
+% - Done in table~\ref{tab:processed-data-normalised}. I initially had this done but commented it out, as I thought it was unnecessary. I have now uncommented it. Where in the rubric does it say to normalise the data?
 
-% Normalising the units of length into metres and CSA into metres squared gives us table~\ref{tab:processed-data-normalised}.
+Normalising the units of length into metres and CSA into metres squared gives us table~\ref{tab:processed-data-normalised}.
 
-% \begin{table}[H]
-%   \centering
-%   \begin{tabular}{@{}cccl@{}}
-%     \toprule
-%     Length \unc{0.005}{\centi\metre} & CSA \punc{2}{\metre\squared} & Average resistance & Uncertainty     \\ \midrule
-%     \num{0.400}                      & \num{7.9e-7}                 & \num{1.20}         & \unc{0.2}{\ohm} \\
-%     \num{0.400}                      & \num{5.0e-7}                 & \num{1.66}         & \unc{0.1}{\ohm} \\
-%     \num{0.400}                      & \num{3.1e-7}                 & \num{1.98}         & \unc{0.4}{\ohm} \\
-%     \num{0.400}                      & \num{1.9e-7}                 & \num{3.94}         & \unc{0.2}{\ohm} \\ \bottomrule
-%   \end{tabular}
-%   \caption{Processed and normalised wire trials}\label{tab:processed-data-normalised}
-% \end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}cccl@{}}
+    \toprule
+    Length \unc{0.005}{\metre} & CSA \punc{2}{\metre\squared} & Average resistance & Uncertainty (\si{\ohm}) \\ \midrule
+    \num{0.400}                & \num{7.9e-7}                 & \num{1.20}         & \num{\pm0.2}            \\
+    \num{0.400}                & \num{5.0e-7}                 & \num{1.66}         & \num{\pm0.1}            \\
+    \num{0.400}                & \num{3.1e-7}                 & \num{1.98}         & \num{\pm0.4}            \\
+    \num{0.400}                & \num{1.9e-7}                 & \num{3.94}         & \num{\pm0.2}            \\ \bottomrule
+  \end{tabular}
+  \caption{Processed and normalised wire trials}\label{tab:processed-data-normalised}
+\end{table}
 
-Having this, we can construct figure~\ref{fig:resistance-vs-csa}, a graph of our independent variable, cross-sectional area, against our dependent variable, resistance.
+Having this, we can construct figure~\ref{fig:resistance-vs-csa}, a graph of our independent variable, cross-sectional area, against our dependent variable, resistance. However, the graph will be using the unnormalised data from table~\ref{tab:processed-data} as Excel is not accurate enough to process numbers as small as the ones in table~\ref{tab:processed-data-normalised}, and produces inaccurate trendlines.
 
 \graph{resistance-vs-csa}{Resistance vs cross-sectional area}
 
