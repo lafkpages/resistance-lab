@@ -1,7 +1,6 @@
 {
   "latex-workshop.formatting.latex": "tex-fmt",
   "latex-workshop.formatting.tex-fmt.args": ["--nowrap"],
-  "editor.wordWrapColumn": 140,
   "latex-workshop.linting.chktex.enabled": true,
   "latex-workshop.linting.lacheck.enabled": true,
   "cSpell.language": "en-GB",
