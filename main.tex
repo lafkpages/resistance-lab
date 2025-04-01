@@ -185,10 +185,10 @@ Putting this together, we get table~\ref{tab:processed-data}, which shows the pr
   \begin{tabular}{@{}cccl@{}}
     \toprule
     Length \unc{0.5}{\centi\metre} & CSA \punc{2}{\milli\metre\squared} & Average resistance & Uncertainty (\si{\ohm}) \\ \midrule
-    \num{40.0}                     & \num{0.79}                         & \num{1.20}         & \num{\pm0.2}            \\
-    \num{40.0}                     & \num{0.50}                         & \num{1.66}         & \num{\pm0.1}            \\
-    \num{40.0}                     & \num{0.31}                         & \num{1.98}         & \num{\pm0.4}            \\
-    \num{40.0}                     & \num{0.19}                         & \num{3.94}         & \num{\pm0.2}            \\ \bottomrule
+    \num{40.0}                     & \num{0.79}                         & \num{1.2}          & \num{\pm0.2}            \\
+    \num{40.0}                     & \num{0.50}                         & \num{1.7}          & \num{\pm0.1}            \\
+    \num{40.0}                     & \num{0.31}                         & \num{2.0}          & \num{\pm0.4}            \\
+    \num{40.0}                     & \num{0.19}                         & \num{3.9}          & \num{\pm0.2}            \\ \bottomrule
   \end{tabular}
   \caption{Processed wire trials}\label{tab:processed-data}
 \end{table}
@@ -201,6 +201,9 @@ Putting this together, we get table~\ref{tab:processed-data}, which shows the pr
 % Feedback: You should have your L and A in m and metres squared.
 % - Done in table~\ref{tab:processed-data-normalised}. I initially had this done but commented it out, as I thought it was unnecessary. I have now uncommented it. Where in the rubric does it say to normalise the data?
 
+% Feedback: Data can't be more precise than the unc
+% - Done, in both tables
+
 Normalising the units of length into metres and CSA into metres squared gives us table~\ref{tab:processed-data-normalised}.
 
 \begin{table}[H]
@@ -208,10 +211,10 @@ Normalising the units of length into metres and CSA into metres squared gives us
   \begin{tabular}{@{}cccl@{}}
     \toprule
     Length \unc{0.005}{\metre} & CSA \punc{2}{\metre\squared} & Average resistance & Uncertainty (\si{\ohm}) \\ \midrule
-    \num{0.400}                & \num{7.9e-7}                 & \num{1.20}         & \num{\pm0.2}            \\
-    \num{0.400}                & \num{5.0e-7}                 & \num{1.66}         & \num{\pm0.1}            \\
-    \num{0.400}                & \num{3.1e-7}                 & \num{1.98}         & \num{\pm0.4}            \\
-    \num{0.400}                & \num{1.9e-7}                 & \num{3.94}         & \num{\pm0.2}            \\ \bottomrule
+    \num{0.400}                & \num{7.9e-7}                 & \num{1.2}          & \num{\pm0.2}            \\
+    \num{0.400}                & \num{5.0e-7}                 & \num{1.7}          & \num{\pm0.1}            \\
+    \num{0.400}                & \num{3.1e-7}                 & \num{2.0}          & \num{\pm0.4}            \\
+    \num{0.400}                & \num{1.9e-7}                 & \num{3.9}          & \num{\pm0.2}            \\ \bottomrule
   \end{tabular}
   \caption{Processed and normalised wire trials}\label{tab:processed-data-normalised}
 \end{table}
